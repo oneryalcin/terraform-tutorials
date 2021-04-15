@@ -1,3 +1,5 @@
+# --- image/providers.tf ---
+
 terraform {
   required_providers {
     docker = {

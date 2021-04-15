@@ -1,4 +1,5 @@
 terraform-aws/*
+*/noderedvol/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/terraform,cloud9
 # Edit at https://www.toptal.com/developers/gitignore?templates=terraform,cloud9
