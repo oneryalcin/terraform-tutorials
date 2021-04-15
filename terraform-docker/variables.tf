@@ -34,5 +34,5 @@ variable "int_port" {
 }
 
 locals {
-  container_cnt = length(lookup(var.ext_port, terraform.workspace))
+  container_cnt = length(var.ext_port[terraform.workspace])
 }
