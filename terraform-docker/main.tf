@@ -1,3 +1,5 @@
+# --- root/main.tf ---
+
 locals {
   deployment = {
     nodered = {

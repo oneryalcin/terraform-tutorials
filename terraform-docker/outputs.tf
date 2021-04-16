@@ -1,11 +1,6 @@
+# --- root/outputs.tf ---
 
-//output "container-name" {
-//  value       = module.container[*].container-name
-//  description = "Name of the container"
-//}
-//
-//output "ip-address" {
-//  value       = flatten(module.container[*].ip-address)
-//  description = "The IP address of the container"
-//  # sensitive = true
-//}
+output "application_access" {
+  value       = [for x in module.container[*] : x]
+  description = "The name and socket for each application"
+}
