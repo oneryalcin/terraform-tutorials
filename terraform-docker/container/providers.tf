@@ -1,4 +1,4 @@
-# --- image/providers.tf ---
+# --- container/providers.tf ---
 
 terraform {
   required_providers {
