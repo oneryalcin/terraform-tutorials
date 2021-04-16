@@ -18,9 +18,9 @@ resource "aws_vpc" "mtc_vpc" {
 
 
 resource "aws_subnet" "mtc_public_subnet" {
-  count = length(var.public_cidrs)
-  cidr_block = var.public_cidrs[count.index]
-  vpc_id = aws_vpc.mtc_vpc.id
+  count                   = length(var.public_cidrs)
+  cidr_block              = var.public_cidrs[count.index]
+  vpc_id                  = aws_vpc.mtc_vpc.id
   map_public_ip_on_launch = true
   availability_zone = [
     "eu-west-2a",
