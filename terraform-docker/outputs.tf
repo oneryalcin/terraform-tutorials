@@ -1,6 +1,6 @@
 
 output "container-name" {
-  value = module.container[*].container-name
+  value       = module.container[*].container-name
   description = "Name of the container"
 }
 
