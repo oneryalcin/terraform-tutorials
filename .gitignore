@@ -1,5 +1,4 @@
 .idea/*
-terraform-aws/*
 */noderedvol/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/terraform,cloud9
