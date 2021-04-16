@@ -20,6 +20,7 @@ resource "random_string" "random" {
 
 
 resource "docker_container" "nodered_container" {
+  depends_on = [null_resource.dockervol]
   count = local.container_cnt
   name  = join("-", ["nodered", terraform.workspace, random_string.random[count.index].result])
   image = module.image.image_out
