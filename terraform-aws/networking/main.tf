@@ -1,10 +1,17 @@
 ## --- networking/main.tf ---
 
+data "aws_availability_zones" "available" {}
+
 resource "random_integer" "random" {
   min = 1
   max = 100
 }
 
+
+resource "random_shuffle" "az_list" {
+  input        = data.aws_availability_zones.available.names
+  result_count = var.max_subnets
+}
 
 resource "aws_vpc" "mtc_vpc" {
   cidr_block           = var.vpc_cidr
@@ -22,11 +29,7 @@ resource "aws_subnet" "mtc_public_subnet" {
   cidr_block              = var.public_cidrs[count.index]
   vpc_id                  = aws_vpc.mtc_vpc.id
   map_public_ip_on_launch = true
-  availability_zone = [
-    "eu-west-2a",
-    "eu-west-2b",
-    "eu-west-2c",
-  ][count.index]
+  availability_zone       = random_shuffle.az_list.result[count.index]
 
   tags = {
     Name = "mtc-public_${count.index + 1}"
@@ -38,11 +41,7 @@ resource "aws_subnet" "mtc_private_subnet" {
   cidr_block              = var.private_cidrs[count.index]
   vpc_id                  = aws_vpc.mtc_vpc.id
   map_public_ip_on_launch = false
-  availability_zone = [
-    "eu-west-2a",
-    "eu-west-2b",
-    "eu-west-2c",
-  ][count.index]
+  availability_zone       = random_shuffle.az_list.result[count.index]
 
   tags = {
     Name = "mtc-private_${count.index + 1}"
